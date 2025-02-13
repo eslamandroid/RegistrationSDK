@@ -9,10 +9,3 @@ fun UserModel.toEntity(): UserEntity = UserEntity(
     email = email,
     password = password,
 )
-
-fun UserEntity.toDomainModel(): UserModel = UserModel(
-    username = username,
-    phone = phone,
-    email = email,
-    password = password,
-)
