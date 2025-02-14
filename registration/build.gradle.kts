@@ -6,6 +6,28 @@ plugins {
     alias(libs.plugins.ksp.kotlin.symbol)
     alias(libs.plugins.kotlin.serialization)
     id("kotlin-parcelize")
+    id("maven-publish")
+}
+
+afterEvaluate {
+    publishing {
+        publishing {
+            publications {
+                create<MavenPublication>("release") {
+                    from(components.findByName("release") ?: return@create)
+                    groupId = "com.valify"
+                    artifactId = "registrationsdk"
+                    version = "1.0.0"
+                }
+            }
+        }
+
+        repositories {
+            maven {
+                url = uri("${rootProject.layout.buildDirectory}/repo")
+            }
+        }
+    }
 
 }
 
@@ -16,6 +38,7 @@ android {
     defaultConfig {
         minSdk = 22
         lint.targetSdk = 35
+        consumerProguardFiles("proguard-rules.pro")
 
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -23,7 +46,7 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
@@ -77,6 +100,7 @@ dependencies {
     implementation(libs.android.database.sqlcipher)
     implementation(libs.androidx.sqlite.ktx)
     ksp(libs.androidx.jetpack.room.compiler)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

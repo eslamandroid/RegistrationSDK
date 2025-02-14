@@ -1,3 +1,9 @@
 package com.valify.registrationsdk.domain.model
 
-data class UserModel(val username: String, val phone: String, val email: String, val password: String)
+import android.os.Parcelable
+import androidx.annotation.Keep
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
+@Keep
+data class UserModel(val username: String, val phone: String, val email: String, val password: String):Parcelable
