@@ -9,28 +9,24 @@ plugins {
     id("maven-publish")
 }
 
-afterEvaluate {
-    publishing {
-        publishing {
-            publications {
-                create<MavenPublication>("release") {
-                    from(components.findByName("release") ?: return@create)
-                    groupId = "com.valify"
-                    artifactId = "registrationsdk"
-                    version = "1.0.0"
-                }
+publishing {
+    publications {
+        register<MavenPublication>("release") {
+            groupId = "com.github.eslamandroid"
+            artifactId = "RegistrationSDK"
+            version = "1.0.0"
+            afterEvaluate {
+                from(components["release"])
             }
         }
-
         repositories {
             maven {
                 url = uri("${rootProject.layout.buildDirectory}/repo")
             }
+            mavenLocal()
         }
     }
-
 }
-
 android {
     namespace = "com.valify.registrationsdk"
     compileSdk = 35
@@ -51,11 +47,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_17
+        targetCompatibility = JavaVersion.VERSION_17
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "17"
     }
     buildFeatures {
         compose = true
