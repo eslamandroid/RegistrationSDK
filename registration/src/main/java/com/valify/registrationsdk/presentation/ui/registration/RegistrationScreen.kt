@@ -55,13 +55,6 @@ internal fun RegistrationScreen(viewModel: RegistrationViewModel = hiltViewModel
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
 
-    LaunchedEffect(state.success) {
-        if (state.success) {
-            viewModel.sendIntent(RegistrationIntent.ResetState)
-            onNavigateToCameraDetect()
-        }
-    }
-
     LaunchedEffect(state.appFailure) {
         snackbarHostState.currentSnackbarData?.dismiss()
         state.appFailure?.let {
@@ -76,6 +69,10 @@ internal fun RegistrationScreen(viewModel: RegistrationViewModel = hiltViewModel
         }
     }
 
+    if (state.success) {
+        viewModel.sendIntent(RegistrationIntent.ResetState)
+        onNavigateToCameraDetect()
+    }
 
     Scaffold(topBar = {
         CenterAlignedTopAppBar(title = {
@@ -103,7 +100,7 @@ internal fun RegistrationScreen(viewModel: RegistrationViewModel = hiltViewModel
 }
 
 @Composable
-internal fun FormContent(
+private fun FormContent(
     validationError: ValidateError? = null,
     modifier: Modifier = Modifier,
     onRestError: () -> Unit = {},
@@ -187,9 +184,9 @@ internal fun FormContent(
                 imeAction = ImeAction.Done,
                 passwordToggle = true,
                 onDone = {
+                    passwordFocus.freeFocus()
                     keyboardController?.hide()
                     focusManager.clearFocus()
-                    passwordFocus.freeFocus()
                 },
                 focusRequester = passwordFocus,
             )
@@ -220,7 +217,7 @@ internal fun FormContent(
 }
 
 @Composable
-fun getValidationMessage(error: ValidateError?, fieldKey: String, @StringRes errorMessage: Int): String {
+private fun getValidationMessage(error: ValidateError?, fieldKey: String, @StringRes errorMessage: Int): String {
     return if (error?.fieldKey == fieldKey) {
         when (error.type) {
             ValidationType.Invalid -> stringResource(errorMessage)
