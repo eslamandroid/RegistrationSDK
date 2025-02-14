@@ -32,8 +32,8 @@ private val LightColorScheme = lightColorScheme(
 @Composable
 fun RegistrationSDKTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
+    activity: Activity? = LocalContext.current as? Activity,
     content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
@@ -45,14 +45,12 @@ fun RegistrationSDKTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-    val activity = LocalContext.current
-
-    val window = calculateWindowSizeClass(activity = activity as Activity)
+    val windowSizeClass = activity?.let { calculateWindowSizeClass(it) }
     val config = LocalConfiguration.current
     var appDimens = Compact
     var typography = CompactTypography
 
-    when (window.widthSizeClass) {
+    when (windowSizeClass?.widthSizeClass) {
         WindowWidthSizeClass.Compact -> {
             if (config.screenWidthDp <= 360) {
                 appDimens = CompactSmall

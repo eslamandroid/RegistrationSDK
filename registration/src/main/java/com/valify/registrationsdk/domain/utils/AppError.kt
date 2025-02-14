@@ -11,5 +11,5 @@ sealed class AppError {
 
 enum class ValidationType {
     Empty,
-    InValidate
+    Invalid
 }
