@@ -79,8 +79,8 @@
 -keep class com.valify.registrationsdk.data.di.** { *; }
 -keep class com.valify.registrationsdk.presentation.ui.registration.viewmodel.** { *; }
 -keep class com.valify.registrationsdk.domain.** { *; }
--keep class com.valify.registrationsdk.presentation.RegistrationActivity { *; }
--keep class com.valify.registrationsdk.presentation.RegistrationActivity_GeneratedInjector { *; }
+-keep class com.valify.registrationsdk.presentation.MainActivity { *; }
+-keep class com.valify.registrationsdk.presentation.MainActivity_GeneratedInjector { *; }
 -keep class com.valify.registrationsdk.projectone.Hilt_* { *; }
 
 # Keep Serializable and Parcelable classes
