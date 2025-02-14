@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import androidx.sqlite.db.SupportSQLiteOpenHelper
 import com.valify.registrationsdk.data.datasources.local.AppDatabase
+import com.valify.registrationsdk.data.datasources.local.dao.ImageDao
 import com.valify.registrationsdk.data.datasources.local.dao.UserDao
 import com.valify.registrationsdk.data.utils.generateSecretKey
 import dagger.Module
@@ -30,5 +31,8 @@ object DatabaseModule {
 
     @Provides
     fun provideUserDao(database: AppDatabase): UserDao = database.userDao()
+
+    @Provides
+    fun provideImageDao(database: AppDatabase): ImageDao = database.imageDao()
 
 }
