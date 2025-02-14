@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.ksp.kotlin.symbol)
     alias(libs.plugins.kotlin.serialization)
     id("kotlin-parcelize")
+
 }
 
 android {
@@ -13,8 +14,9 @@ android {
     compileSdk = 35
 
     defaultConfig {
-        minSdk = 23
+        minSdk = 22
         lint.targetSdk = 35
+
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,6 +50,9 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.material3.window.size)
+    implementation(libs.kotlinx.serialization.json)
+    implementation(libs.androidx.material.icons.extended)
+
 
     //ViewModel
     implementation(libs.androidx.lifecycle.viewmodel)
@@ -60,11 +65,17 @@ dependencies {
 
     //Hilt
     implementation(libs.hilt.android)
+    implementation(libs.androidx.hilt.navigation.compose)
     ksp(libs.hilt.compiler)
+
+    implementation(libs.androidx.security.crypto)
+
 
     // Room
     implementation(libs.androidx.jetpack.room.runtime)
     implementation(libs.androidx.jetpack.room.coroutine)
+    implementation(libs.android.database.sqlcipher)
+    implementation(libs.androidx.sqlite.ktx)
     ksp(libs.androidx.jetpack.room.compiler)
 
     testImplementation(libs.junit)
