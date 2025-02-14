@@ -78,6 +78,7 @@
 # Keep Valify Registration SDK
 -keep class com.valify.registrationsdk.data.di.** { *; }
 -keep class com.valify.registrationsdk.presentation.ui.registration.viewmodel.** { *; }
+-keep class com.valify.registrationsdk.presentation.ui.captureImage.viewmodel.** { *; }
 -keep class com.valify.registrationsdk.domain.** { *; }
 -keep class com.valify.registrationsdk.presentation.MainActivity { *; }
 -keep class com.valify.registrationsdk.presentation.MainActivity_GeneratedInjector { *; }

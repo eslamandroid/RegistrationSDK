@@ -101,6 +101,18 @@ dependencies {
     implementation(libs.androidx.sqlite.ktx)
     ksp(libs.androidx.jetpack.room.compiler)
 
+    //Permission
+    implementation(libs.accompanist.permissions)
+
+
+    //CameraX
+    implementation(libs.androidx.camera.core)
+    implementation(libs.androidx.camera.camera2)
+    implementation(libs.androidx.camera.lifecycle)
+    implementation(libs.androidx.camera.view)
+    implementation(libs.androidx.camera.mlkit.vision)
+    implementation(libs.face.detection)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
