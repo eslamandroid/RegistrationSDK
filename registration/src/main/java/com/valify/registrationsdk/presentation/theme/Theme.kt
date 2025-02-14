@@ -4,6 +4,7 @@ package com.valify.registrationsdk.presentation.theme
 
 import android.app.Activity
 import android.os.Build
+import androidx.activity.compose.LocalActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
@@ -33,7 +34,7 @@ private val LightColorScheme = lightColorScheme(
 fun RegistrationSDKTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = true,
-    activity: Activity? = LocalContext.current as? Activity,
+    activity: Activity? = LocalActivity.current,
     content: @Composable () -> Unit,
 ) {
     val colorScheme = when {

@@ -1,6 +1,5 @@
 package com.valify.registrationsdk.presentation.ui.registration.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.valify.registrationsdk.domain.model.UserModel
